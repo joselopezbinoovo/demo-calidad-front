@@ -19,5 +19,16 @@
     margin-top: 80px;
 }
 .itemMenu{
-    color: #3391FF
+    color: #12083C
+}
+
+button .mat-mini-fab {
+  background-color: #12083C; // Color de fondo deseado
+  color: #ffffff; // Color de texto deseado (puedes ajustarlo según tus necesidades)
+  transition: background-color 0.3s ease; // Transición para la propiedad background-color
+
+  &:hover {
+    background-color: #0a0622; // Cambia el color de fondo al pasar el ratón sobre el botón
+  }
+
 }

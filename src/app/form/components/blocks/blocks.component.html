@@ -15,8 +15,8 @@
     <button *ngIf="form.status != 'Finalizado'" mat-raised-button color="warn"  (click)="cancelForm()" >Cancelar</button>
 
     <button mat-raised-button color="primary"
-        *ngIf="form.status != 'Finalizado' || hasPermissions()" (click)="handlerSubmit()">Guardar
-        Bloque</button>
+    *ngIf="form.status != 'Finalizado' || hasPermissions()" (click)="handlerSubmit()" class="save-button">Guardar Bloque</button>
+
     <button mat-raised-button color="primary"
         [disabled]="!showFinish()"
         (click)="finishForm()">Finalizar</button>

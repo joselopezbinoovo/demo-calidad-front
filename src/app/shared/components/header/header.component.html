@@ -1,6 +1,6 @@
 <main class="headerComponent" *ngIf="user">
     <mat-toolbar>
-        <img src="./assets/images/png/logo.png" alt="">
+        <img src="../../../../assets/images/png/meikit_logo-dark.png" alt="">
         <div *ngIf="params$ | async as params " class="header-params">
           <div *ngFor="let param of params">
             <span>{{param.label}}</span><span *ngIf="param.value">: {{param.value}}</span>

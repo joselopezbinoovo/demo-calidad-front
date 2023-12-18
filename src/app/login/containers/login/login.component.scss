@@ -28,8 +28,19 @@
     justify-content: center;
     align-items: center;
 
+    .circle-container {
+      background-color: rgba(126, 126, 166, 0.453); // Color de fondo azul
+      width: 80px; // Puedes ajustar el tamaño del círculo según tus necesidades
+      height: 80px; // Puedes ajustar el tamaño del círculo según tus necesidades
+      border-radius: 50%; // Hace que el contenedor sea circular
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     img {
       width: 60px;
+      overflow: hidden; // Asegura que la imagen respete el radio de borde
     }
   }
 

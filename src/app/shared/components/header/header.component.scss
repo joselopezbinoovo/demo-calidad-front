@@ -2,7 +2,7 @@
     flex: 1 1 auto;
   }
   .mat-toolbar{
-      background-color: white;
+      background-color: #12083C;
       padding: 0 5%;
       .header-params{
           text-align: center;
@@ -12,3 +12,16 @@
   .variables{
       margin-left: 100px;
   }
+
+
+  span{
+    color: white;
+  }
+.mat-icon{
+  color: white;
+  transition: transform 0.3s ease; // Transición para la propiedad transform
+
+  &:hover {
+    transform: translateX(5px); // Desplazamiento hacia la derecha en 5px al pasar el ratón
+  }
+}

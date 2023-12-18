@@ -6,7 +6,7 @@
     <app-image-upload [title]="'Adjuntar imagen'" [serialNumber]="form?.serialNumber" [data]="makeFilePath()" (onUpload)="uploadImage($event)">
     </app-image-upload>
     <mat-checkbox class="example-margin" [(ngModel)]="selectAllImages" (change)="toggleSelectAllImages()">Seleccionar todas las imágenes para Eliminar</mat-checkbox>
-    <button mat-flat-button color="warn" (click)="deleteSelectedImages()"  style="background-color: #BF1A4A;">Eliminar Imágenes Seleccionadas</button>
+    <button mat-flat-button color="warn" (click)="deleteSelectedImages()"  style="background-color: #bf1a1a;">Eliminar Imágenes Seleccionadas</button>
 
 
   </header>

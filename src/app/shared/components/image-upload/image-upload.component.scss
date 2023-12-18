@@ -1,0 +1,10 @@
+button.mat-flat-button {
+  background-color: #12083C; // Color de fondo deseado
+  color: white; // Color de texto deseado (puedes ajustarlo según tus necesidades)
+  transition: background-color 0.3s ease; // Transición para la propiedad background-color
+
+  &:hover {
+    background-color: #271a5f;
+    color: aqua;
+  }
+}

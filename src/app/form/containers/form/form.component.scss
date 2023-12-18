@@ -52,7 +52,7 @@ main {
     width: 90%;
   }
 
- 
+
 }
 
 .genPDF{
@@ -67,6 +67,12 @@ main {
 
   .buttonUpload {
     margin-left: 10px;
+    background-color: #12083C;
+  }
+  .buttonUpload:hover {
+    margin-left: 10px;
+    background-color: #271a5f;
+    color: aqua;
   }
 }
 
@@ -112,7 +118,7 @@ main {
 //     color: orange !important;
 // }
 
-@media 
+@media
 only screen and (max-width: 1100px),(max-device-width: 1100px)  {
     header {
       ul {
@@ -122,7 +128,7 @@ only screen and (max-width: 1100px),(max-device-width: 1100px)  {
 }
 
 
-@media 
+@media
 only screen and (max-width: 760px),(max-device-width: 760px)  {
     header {
       ul {
