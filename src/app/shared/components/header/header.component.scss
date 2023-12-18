@@ -1,0 +1,14 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .mat-toolbar{
+      background-color: white;
+      padding: 0 5%;
+      .header-params{
+          text-align: center;
+          width: 100%;
+      }
+  }
+  .variables{
+      margin-left: 100px;
+  }

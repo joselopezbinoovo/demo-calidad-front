@@ -1,0 +1,23 @@
+@import '../../../shared/styles/material.scss';
+.tableList{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    flex-direction: column;
+
+}
+:host ::ng-deep app-table-generic{
+    width: 90%;
+}
+.buscador{
+    justify-content: space-between;
+    display: flex;
+    margin: 0 6%;
+    align-items: center;
+    margin-top: 80px;
+}
+.itemMenu{
+    color: #3391FF
+}

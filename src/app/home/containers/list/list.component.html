@@ -1,0 +1,23 @@
+<div class="buscador">
+  <button mat-mini-fab color="primary"  (click)="goBack()" >
+    <mat-icon  >keyboard_backspace</mat-icon>
+  </button>
+  <app-searcher (search)="onSearch($event)" [selects]="selectValues" ></app-searcher>
+</div>
+
+<div class="tableList">
+  <app-table-generic *ngIf="genericTable" [dataSource]="dataSource$ | async" [tableProperties]="genericTable" [templateRef]="nestedComponentRef" (eventPaginator)="handlerPaginator($event)">
+  </app-table-generic>
+  <ng-template #nestedComponentRef let-element="element">
+    <div class="container-actions">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+          <button mat-menu-item color="primary" class="itemMenu" (click)="continueSelectedForm(element)">
+              Continuar pauta de inspección
+          </button>
+      </mat-menu>
+    </div>
+  </ng-template>
+</div>

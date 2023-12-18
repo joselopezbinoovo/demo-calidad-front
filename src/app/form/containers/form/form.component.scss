@@ -1,0 +1,132 @@
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  header {
+    background-color: #F5F7FE;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    >ul {
+      display: grid;
+      list-style: none;
+      margin: 1% 0;
+      grid-template-columns: repeat(4, 25%);
+      align-items: center;
+      >li{
+        margin-top: 10px;
+      }
+    }
+
+    li {
+      font-family: Mulish;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 18px;
+      color: #4F4F4F;
+
+      >span, .endDate {
+        font-family: Mulish;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 18px;
+        color: #828282;
+      }
+    }
+  }
+
+  .endDate{
+    margin-top: 10px;
+    span{
+      color: #4F4F4F;
+    }
+  }
+
+  section {
+    position: relative;
+    width: 90%;
+  }
+
+ 
+}
+
+.genPDF{
+  margin-left: 10px;
+}
+.btn-container{
+
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+  justify-content: space-between;
+
+  .buttonUpload {
+    margin-left: 10px;
+  }
+}
+
+// .mat-step-header .mat-step-icon-state-done {
+//     background-color: yellow !important;
+// }
+
+// .mat-step-header .mat-step-icon-state-edit {
+//     background-color: orange !important;
+// }
+
+.mat-step-header .mat-step-icon-state-error {
+    background-color: red !important;
+    color: white!important;
+    border-color: red !important;
+}
+
+
+.mat-step-header .mat-step-icon-state-done {
+    background-color: green !important;
+    color: white!important;
+    border-color: green !important;
+}
+
+.mat-step-header .mat-step-icon-state-edit {
+    background-color: orange !important;
+    color: black !important;
+    border-color: black !important;
+}
+
+.mat-step-header .mat-step-icon-state-done + .mat-step-label-selected,
+.mat-step-header .mat-step-icon-state-done + .mat-step-label {
+    color: green !important;
+}
+
+.mat-step-header .mat-step-icon-state-error + .mat-step-label-selected,
+.mat-step-header .mat-step-icon-state-error + .mat-step-label {
+    color: red !important;
+}
+
+// .mat-step-header .mat-step-icon-state-edit + .mat-step-label-selected,
+// .mat-step-header .mat-step-icon-state-edit + .mat-step-label {
+//     color: orange !important;
+// }
+
+@media 
+only screen and (max-width: 1100px),(max-device-width: 1100px)  {
+    header {
+      ul {
+        grid-template-columns: repeat(3, 33%)!important;
+      }
+    }
+}
+
+
+@media 
+only screen and (max-width: 760px),(max-device-width: 760px)  {
+    header {
+      ul {
+        grid-template-columns: repeat(2, 50%)!important;
+      }
+    }
+}

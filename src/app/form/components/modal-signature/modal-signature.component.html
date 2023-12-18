@@ -1,0 +1,14 @@
+<main class="signatureModal">
+  <header>
+    <img src="./assets/images/png/signature.png" alt="">
+    <!--  <mat-icon>person</mat-icon> -->
+  </header>
+  <h3>Registra tu firma dentro del recuadro</h3>
+  <div class="sign">
+    <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)"></canvas>
+  </div>
+  <div class="btn-actions">
+    <button mat-stroked-button color="primary" (click)="savePad()">Guardar</button>
+    <button mat-stroked-button (click)="clearPad()">Limpiar</button>
+  </div>
+</main>

@@ -1,0 +1,30 @@
+  <div class="buscador" >
+    <button mat-mini-fab color="primary"  (click)="goBack()" >
+      <mat-icon  >keyboard_backspace</mat-icon>
+    </button>
+      <app-searcher (filter)="onFilterState($event)" (search)="onSearch($event)" [selects]="selectValues" ></app-searcher>
+  </div>
+
+
+
+  <div class="tableList" *ngIf="dataSource ">
+    <app-table-generic  [dataSource]="dataSource" [tableProperties]="genericTable" [templateRef]="nestedComponentRef"   (eventPaginator)="handlerPaginator($event)"  (eventSortChange)="handleSort($event)">
+    </app-table-generic>
+    <ng-template #nestedComponentRef let-element="element">
+      <div class="container-actions">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item color="primary" class="itemMenu" (click)="openModal(element)" *ngIf="element.x_product_qty > element.formularios">
+                 Iniciar pauta de inspección
+            </button>
+            <button mat-menu-item color="primary" class="itemMenu" (click)="viewInspectionList(element)" *ngIf="element.formularios">
+                Continuar pauta iniciada
+            </button>
+        </mat-menu>
+      </div>
+    </ng-template>
+
+
+  </div>

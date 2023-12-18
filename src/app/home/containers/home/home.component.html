@@ -1,0 +1,21 @@
+<main class="home">
+  <h1>PAUTAS INSPECCIÓN BSI</h1>
+  <!-- <button mat-flat-button color="primary" (click)="createForm()">CREAR / EDITAR</button> -->
+  <!-- <button mat-flat-button color="primary" (click)="createForm()">CREAR / EDITAR</button> -->
+  <!-- <button class="consultar" mat-stroked-button routerLink="/home/list">CONSULTAR</button> -->
+  <div class="toolbar">
+      <button mat-icon-button class="flex-item" color="primary" (click)="createForm()">
+        <img src="/assets/images/svg/edit.svg" alt="INICIAR O CONTINUAR">
+        <p>INICIAR O CONTINUAR</p>
+      </button>
+      <button class="flex-item" mat-icon-button routerLink="/home/list">
+        <img src="/assets/images/svg/document.svg" alt="CONSULTAR">
+        <p>CONSULTAR</p>
+      </button>
+      <button class="flex-item" mat-icon-button routerLink="/form/config">
+        <img src="/assets/images/svg/settings.svg" alt="CONFIGURAR">
+        <p>CONFIGURAR</p>
+      </button>
+  </div>
+
+</main>

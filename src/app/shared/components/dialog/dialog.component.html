@@ -1,0 +1,72 @@
+<main>
+  <header>
+    <ng-container *ngIf="data.type === 'form'">
+      <img src="./assets/images/svg/form.svg" />
+    </ng-container>
+    <ng-container *ngIf="data.type === 'pauta'">
+      <img src="./assets/images/svg/pauta.svg" />
+    </ng-container>
+    <ng-container *ngIf="data.type === 'delete' || data.type === 'warning'">
+      <img src="./assets/images/svg/exclamacion.svg" />
+    </ng-container>
+    <ng-container *ngIf="data.type === 'success'">
+      <img src="./assets/images/svg/success.svg" />
+    </ng-container>
+  </header>
+  <div class="body">
+
+    <section>
+      <h1 *ngIf="data.type === 'form' || data.type === 'pauta'">{{data.title}}</h1>
+      <h3 *ngIf="data.type === 'delete'">{{data.title}}</h3>
+      <h2 *ngIf="data.type === 'success' || data.type === 'warning'">{{data.title}}</h2>
+    </section>
+  <section *ngIf="data.type === 'warning'">
+    <p>No es posible finalizar el formulario con puntos de control no confirmados</p>
+  </section>
+  <section [formGroup]="objForm" *ngIf="data.type === 'pauta'">
+    <div class="inputGroupLine">
+      <div class="inputPauta">
+        <label for="proyecto">Nº Proyecto</label>
+        <input readonly formControlName="project" type="text" />
+      </div>
+      <div class="inputPauta">
+        <label for="pedido">Nº Pedido</label>
+        <input readonly formControlName="salesOrder" type="text" />
+      </div>
+    </div>
+    <div class="inputPauta">
+      <label for="cliente">Cliente</label>
+      <input readonly formControlName="client" type="text" />
+    </div>
+    <div class="inputPauta">
+      <label for="Producto">Producto</label>
+      <input readonly formControlName="product" type="text" />
+    </div>
+  </section>
+  <section *ngIf="data.type === 'form'">
+    <div class="inputGroup">
+      <label for="type">Tipo</label>
+      <select name="type" [(ngModel)]="type">
+        <option *ngFor="let input of data?.inputs" [value]="input.type ">{{ input.type }}</option>
+      </select>
+    </div>
+  </section>
+</div>
+  <footer>
+    <button mat-flat-button color="primary" *ngIf="data.type === 'form'" (click)="handleSubmit()">Siguiente</button>
+    <div class="buttons" *ngIf="data.type === 'pauta'">
+      <button mat-raised-button (click)="closeModal()">Cancelar</button>
+      <button mat-flat-button color="primary" (click)="startMasterForm()">Iniciar</button>
+    </div>
+    <div class="buttons" *ngIf="data.type === 'delete'">
+      <button mat-raised-button mat-dialog-close>No</button>
+      <button mat-flat-button color="primary" (click)="confirmDelete()">Si</button>
+    </div>
+    <div class="buttons" *ngIf="data.type === 'success'">
+      <button mat-raised-button color="primary" (click)="closeModal()">Aceptar</button>
+    </div>
+    <div class="buttons" *ngIf="data.type === 'warning'">
+      <button mat-raised-button color="primary" (click)="closeModal()">Aceptar</button>
+    </div>
+  </footer>
+</main>

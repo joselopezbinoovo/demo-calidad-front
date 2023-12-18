@@ -1,0 +1,98 @@
+<main>
+    <header>
+      <button mat-mini-fab color="primary" (click)="goBack()">
+        <mat-icon>keyboard_backspace</mat-icon>
+      </button>
+    </header>
+
+
+    <section *ngFor="let item of items; let idx = index">
+        <br>
+        <h3> {{ idx  + 1 }} - {{ item.key }}
+            <button mat-icon-button  aria-label="Delete button" (click)="deleteKey(item)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </h3>
+
+        <mat-form-field>
+            <mat-label class="action">Añadir valor</mat-label>
+            <input
+                #box 
+                matInput
+                type="string"
+                (keydown.enter)="addChip(box.value, item?.values)">
+        </mat-form-field>
+
+        <mat-card class="box mat-elevation-z0">
+            <mat-chip-list>
+                <mat-chip
+                *ngFor="let e of item.values ; let i = index"
+                [removable]="true"
+                (removed)="removeChip(i,e, item?.values)"
+                >
+                {{ e }}
+                <mat-icon matChipRemove
+                        class="matChipRemove"
+                >
+                    close
+                </mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+        </mat-card>
+        <section class="btn-container">
+            <button  mat-flat-button color="primary" (click)="saveHandler(item)">Guardar Valores</button>
+        </section>
+    </section>
+
+    <section class="container2">
+        <h2>Añadir Clave</h2>
+        <form [formGroup]="formObj">
+
+            <mat-form-field>
+                <mat-label class="action">Nombre de la Clave</mat-label>
+                <input
+                    matInput
+                    type="string"
+                    formControlName="key" >
+            </mat-form-field>
+            <br>
+
+            <mat-form-field>
+                <mat-label class="action">Añadir valor</mat-label>
+                <input
+                    matInput
+                    type="string"
+                    #box2
+                    (keydown.enter)="addChip(box2.value, newKey?.values)"
+                   >
+            </mat-form-field>
+    
+            <mat-card class="box mat-elevation-z0">
+                <mat-chip-list >
+                    <mat-chip
+                    *ngFor="let e of newKey.values; let i = index"
+                    [removable]="true"
+                    (removed)="removeChip(i,e, newKey?.values)"
+                    >
+                    {{ e }}
+                    <mat-icon matChipRemove
+                            class="matChipRemove">
+                        close
+                    </mat-icon>
+                    </mat-chip>
+                </mat-chip-list>
+            </mat-card>
+        
+  
+          </form>
+
+          <section class="btn-container">
+            <button  mat-flat-button color="primary" (click)="saveKeyHandler()">Añadir Clave</button>
+        </section>
+    </section>
+
+
+
+    
+
+</main>

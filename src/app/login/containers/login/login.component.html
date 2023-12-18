@@ -1,0 +1,30 @@
+<main class="login">
+  <div class="loginForm">
+    <header>
+      <img src="./assets/images/svg/user.svg" alt="">
+     <!--  <mat-icon>person</mat-icon> -->
+    </header>
+    <section>
+        <h2>INICIAR SESIÓN</h2>
+        <p><b>¡Bienvenido!</b> Utiliza tu ID de usuario y contraseña para iniciar sesión</p>
+      <form [formGroup]="loginForm">
+        <div class="inputGroup">
+          <label>Usuario </label>
+          <input  formControlName="user" required>
+          <mat-icon class="iconEmail">person</mat-icon>
+        </div>
+        <div class="inputGroup">
+          <label>Contraseña</label>
+          <input [type]="hide ? 'password' : 'text'" formControlName="pin" required>
+          <button class="showPassword" mat-icon-button matSuffix (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </div>
+      </form>
+    </section>
+    <footer>
+      <button mat-flat-button color="primary" [disabled]="!loginForm.valid" (click)="onSubmit()">Iniciar sesión</button>
+    </footer>
+  </div>
+</main>

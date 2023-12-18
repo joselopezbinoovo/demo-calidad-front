@@ -1,0 +1,78 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+@import "./assets/styles/stepper.scss";
+@import "./assets/styles/plugins/all";
+
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$bsi-qf-front-primary: mat-palette($mat-indigo);
+$bsi-qf-front-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$bsi-qf-front-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$bsi-qf-front-theme: mat-light-theme($bsi-qf-front-primary, $bsi-qf-front-accent, $bsi-qf-front-warn);
+
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($bsi-qf-front-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: Mulish;
+  src: url(assets/fonts/Mulish.ttf);
+}
+
+
+html,
+body {
+  height: 100%;
+  background-color: #f1f1f1;
+}
+
+body {
+  margin: 0;
+  font-family: 'Mulish', sans-serif !important
+}
+
+.msgConfirm {
+  background-color: RGB(63, 81, 181);
+  color: white;
+  margin-top: 130px !important;
+}
+
+.error {
+  background-color: #c01616;
+  color: white;
+  height: 60px;
+  margin-top: 70px !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.nameInput {
+  font-weight: bold;
+  margin: 2px 0 !important;
+}
+
+.signatureModal{
+
+  .mat-dialog-container{
+    padding: 0;
+  }
+}

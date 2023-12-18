@@ -1,0 +1,79 @@
+<main>
+  <header>
+    <ul>
+      <li><span>Serie:</span> {{ form?.serialNumber }}</li>
+      <li><span>Cliente:</span> {{ form?.customer }}</li>
+      <li><span>Responsable:</span> {{ form?.personInCharge }}</li>
+      <li><span>Proyecto:</span> {{ form?.project }}</li>
+      <li><span>Fecha de Inicio:</span> {{ form?.startDate | date: 'short' }}</li>
+      <li><span>Sección:</span> {{ form?.section }}</li>
+      <li><span>Tipo:</span> {{ form?.type }}</li>
+      <li><span>Pedido:</span> {{ form?.salesOrder }}</li>
+      <li *ngIf="form?.endDate"><span>Fecha de Revisión:</span> {{ form?.endDate | date: 'short'}}</li>
+      </ul>
+      <ul>
+      <ng-container *ngFor="let block of form?.blocks">
+        <li>
+          <span>{{ block.name }} : </span> {{ block.user }}
+          <p class="endDate" *ngIf="block.date">Fecha de finalización: <span>{{ block.date | date }}</span></p>
+        </li>
+      </ng-container>
+    </ul>
+  </header>
+
+  <section>
+    <!-- <div>
+      <input type="file" accept="image/*" capture="camera">
+    </div> -->
+    <div class="btn-container">
+      <div class="btn-volver">
+        <button mat-mini-fab color="primary"  *ngIf="form?.status === 'Finalizado'" routerLink="/home/list">
+          <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+      </div>
+      <div class="btn-actions">
+        <button class="buttonUpload" mat-flat-button color="primary" (click)="goToImages()">Ver Imágenes</button>
+        <button *ngIf="form?.status === 'Finalizado'" class="genPDF" mat-flat-button color="primary" (click)="generatePDF()">Generar PDF</button>
+      </div>
+      <!-- <button class="buttonUpload" mat-flat-button color="primary" (click)="goToConfig()">Configuración</button> -->
+    </div>
+    <mat-horizontal-stepper #stepper labelPosition="bottom" (selectionChange)="blockChange($event)">
+    <!-- Icon overrides. -->
+    <ng-template matStepperIcon="edit">
+      <mat-icon>edit</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="error">
+      <mat-icon>error</mat-icon>
+    </ng-template>
+    <!-- <ng-template matStepperIcon="active">
+      <mat-icon>book</mat-icon>
+    </ng-template> -->
+    <ng-template matStepperIcon="done">
+      <mat-icon>done_all</mat-icon>
+    </ng-template>
+    <!-- <ng-template matStepperIcon="number">
+      <mat-icon>play</mat-icon>
+    </ng-template> -->
+      <!-- <ng-template matStepperIcon="edit">
+        <mat-icon>insert_drive_file</mat-icon>
+      </ng-template>
+      
+      <ng-template matStepperIcon="done">
+        <mat-icon>done_all</mat-icon>
+      </ng-template> -->
+      <ng-container *ngIf="!!form">
+        <ng-container *ngFor="let block of form?.blocks; let i = index">
+          <!-- <mat-step [stepControl]="block.name" [editable]="true" [state]="getFormBlockState(block)"> -->
+          <mat-step [stepControl]="block.name" [editable]="true" [state]="getFormBlockStatus(i)">
+            <ng-template matStepLabel>{{ block.name }}</ng-template>
+            <!-- <app-blocks [block]="block" [form]="form"  [dataSource]="block.inputs"  [index]="selectedIndex"></app-blocks> -->
+            <!-- <app-blocks [block]="block" [form]="form" [index]="selectedIndex"></app-blocks> -->
+            <app-blocks [index]="i" (update)="updateForm($event)"></app-blocks>
+          </mat-step>
+        </ng-container>
+
+      </ng-container>
+    </mat-horizontal-stepper>
+    
+  </section>
+</main>

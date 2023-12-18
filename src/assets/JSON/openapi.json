@@ -1,0 +1,4775 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "bsi-qf-backend",
+    "version": "1.0.0",
+    "description": "Formularios de Inspección de Calidad BSI",
+    "contact": {}
+  },
+  "paths": {
+    "/counters/count": {
+      "get": {
+        "x-controller-name": "CounterController",
+        "x-operation-name": "count",
+        "tags": [
+          "CounterController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Counter model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Counter.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Counter>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "CounterController.count"
+      }
+    },
+    "/counters/{id}/next": {
+      "patch": {
+        "x-controller-name": "CounterController",
+        "x-operation-name": "getNextCounterSequence",
+        "tags": [
+          "CounterController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Counter PATCH next sequence success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "CounterController.getNextCounterSequence"
+      }
+    },
+    "/counters/{id}": {
+      "put": {
+        "x-controller-name": "CounterController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "CounterController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Counter PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Counter"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "CounterController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "CounterController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "CounterController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Counter PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CounterPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "CounterController.updateById"
+      },
+      "get": {
+        "x-controller-name": "CounterController",
+        "x-operation-name": "findById",
+        "tags": [
+          "CounterController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Counter model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CounterWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Counter.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "CounterController.findById"
+      },
+      "delete": {
+        "x-controller-name": "CounterController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "CounterController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Counter DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "CounterController.deleteById"
+      }
+    },
+    "/counters": {
+      "post": {
+        "x-controller-name": "CounterController",
+        "x-operation-name": "create",
+        "tags": [
+          "CounterController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Counter model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Counter"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewCounter"
+              }
+            }
+          }
+        },
+        "operationId": "CounterController.create"
+      },
+      "patch": {
+        "x-controller-name": "CounterController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "CounterController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Counter PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Counter.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Counter>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CounterPartial"
+              }
+            }
+          }
+        },
+        "operationId": "CounterController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "CounterController",
+        "x-operation-name": "find",
+        "tags": [
+          "CounterController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Counter model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CounterWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Counter.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "CounterController.find"
+      }
+    },
+    "/custom-data/count": {
+      "get": {
+        "x-controller-name": "CustomDataController",
+        "x-operation-name": "count",
+        "tags": [
+          "CustomDataController"
+        ],
+        "responses": {
+          "200": {
+            "description": "CustomData model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "CustomData.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<CustomData>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "CustomDataController.count"
+      }
+    },
+    "/custom-data/{id}": {
+      "put": {
+        "x-controller-name": "CustomDataController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "CustomDataController"
+        ],
+        "responses": {
+          "204": {
+            "description": "CustomData PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomData"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "CustomDataController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "CustomDataController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "CustomDataController"
+        ],
+        "responses": {
+          "204": {
+            "description": "CustomData PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomDataPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "CustomDataController.updateById"
+      },
+      "get": {
+        "x-controller-name": "CustomDataController",
+        "x-operation-name": "findById",
+        "tags": [
+          "CustomDataController"
+        ],
+        "responses": {
+          "200": {
+            "description": "CustomData model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomDataWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomData.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "CustomDataController.findById"
+      },
+      "delete": {
+        "x-controller-name": "CustomDataController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "CustomDataController"
+        ],
+        "responses": {
+          "204": {
+            "description": "CustomData DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "CustomDataController.deleteById"
+      }
+    },
+    "/custom-data": {
+      "post": {
+        "x-controller-name": "CustomDataController",
+        "x-operation-name": "create",
+        "tags": [
+          "CustomDataController"
+        ],
+        "responses": {
+          "200": {
+            "description": "CustomData model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomData"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewCustomData"
+              }
+            }
+          }
+        },
+        "operationId": "CustomDataController.create"
+      },
+      "patch": {
+        "x-controller-name": "CustomDataController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "CustomDataController"
+        ],
+        "responses": {
+          "200": {
+            "description": "CustomData PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "CustomData.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<CustomData>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomDataPartial"
+              }
+            }
+          }
+        },
+        "operationId": "CustomDataController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "CustomDataController",
+        "x-operation-name": "find",
+        "tags": [
+          "CustomDataController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of CustomData model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomDataWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomData.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "CustomDataController.find"
+      }
+    },
+    "/forms/count": {
+      "get": {
+        "x-controller-name": "FormController",
+        "x-operation-name": "count",
+        "tags": [
+          "FormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Form model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Form.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Form>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "FormController.count"
+      }
+    },
+    "/forms/{id}": {
+      "put": {
+        "x-controller-name": "FormController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "FormController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Form PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Form"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "FormController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "FormController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "FormController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Form PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FormPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "FormController.updateById"
+      },
+      "get": {
+        "x-controller-name": "FormController",
+        "x-operation-name": "findById",
+        "tags": [
+          "FormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Form model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Form.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "FormController.findById"
+      },
+      "delete": {
+        "x-controller-name": "FormController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "FormController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Form DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "FormController.deleteById"
+      }
+    },
+    "/forms": {
+      "post": {
+        "x-controller-name": "FormController",
+        "x-operation-name": "create",
+        "tags": [
+          "FormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Form model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Form"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewForm"
+              }
+            }
+          }
+        },
+        "operationId": "FormController.create"
+      },
+      "patch": {
+        "x-controller-name": "FormController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "FormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Form PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Form.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Form>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FormPartial"
+              }
+            }
+          }
+        },
+        "operationId": "FormController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "FormController",
+        "x-operation-name": "find",
+        "tags": [
+          "FormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Form model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FormWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Form.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "FormController.find"
+      }
+    },
+    "/master-forms/count": {
+      "get": {
+        "x-controller-name": "MasterFormController",
+        "x-operation-name": "count",
+        "tags": [
+          "MasterFormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "MasterForm model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "MasterForm.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<MasterForm>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "MasterFormController.count"
+      }
+    },
+    "/master-forms/{id}": {
+      "put": {
+        "x-controller-name": "MasterFormController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "MasterFormController"
+        ],
+        "responses": {
+          "204": {
+            "description": "MasterForm PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MasterForm"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "MasterFormController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "MasterFormController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "MasterFormController"
+        ],
+        "responses": {
+          "204": {
+            "description": "MasterForm PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MasterFormPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "MasterFormController.updateById"
+      },
+      "get": {
+        "x-controller-name": "MasterFormController",
+        "x-operation-name": "findById",
+        "tags": [
+          "MasterFormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "MasterForm model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MasterFormWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MasterForm.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "MasterFormController.findById"
+      },
+      "delete": {
+        "x-controller-name": "MasterFormController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "MasterFormController"
+        ],
+        "responses": {
+          "204": {
+            "description": "MasterForm DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "MasterFormController.deleteById"
+      }
+    },
+    "/master-forms": {
+      "post": {
+        "x-controller-name": "MasterFormController",
+        "x-operation-name": "create",
+        "tags": [
+          "MasterFormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "MasterForm model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MasterForm"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewMasterForm"
+              }
+            }
+          }
+        },
+        "operationId": "MasterFormController.create"
+      },
+      "patch": {
+        "x-controller-name": "MasterFormController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "MasterFormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "MasterForm PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "MasterForm.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<MasterForm>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MasterFormPartial"
+              }
+            }
+          }
+        },
+        "operationId": "MasterFormController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "MasterFormController",
+        "x-operation-name": "find",
+        "tags": [
+          "MasterFormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of MasterForm model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MasterFormWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MasterForm.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "MasterFormController.find"
+      }
+    },
+    "/ping": {
+      "get": {
+        "x-controller-name": "PingController",
+        "x-operation-name": "ping",
+        "tags": [
+          "PingController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ping Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingResponse"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "PingController.ping"
+      }
+    },
+    "/x-bve-empleados/checktoken/{token}": {
+      "get": {
+        "x-controller-name": "XBveEmpleadosController",
+        "x-operation-name": "checktoken",
+        "tags": [
+          "XBveEmpleadosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Check User token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "XBveEmpleadosController.checktoken"
+      }
+    },
+    "/x-bve-empleados/count": {
+      "get": {
+        "x-controller-name": "XBveEmpleadosController",
+        "x-operation-name": "count",
+        "tags": [
+          "XBveEmpleadosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "XBveEmpleados model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "XBveEmpleados.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<XBveEmpleados>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "XBveEmpleadosController.count"
+      }
+    },
+    "/x-bve-empleados/login": {
+      "post": {
+        "x-controller-name": "XBveEmpleadosController",
+        "x-operation-name": "login",
+        "tags": [
+          "XBveEmpleadosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Login User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "The input of login function",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "user",
+                  "pin"
+                ],
+                "properties": {
+                  "user": {
+                    "type": "string"
+                  },
+                  "pin": {
+                    "type": "string",
+                    "minLength": 4
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "XBveEmpleadosController.login"
+      }
+    },
+    "/x-bve-empleados/{id}": {
+      "put": {
+        "x-controller-name": "XBveEmpleadosController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "XBveEmpleadosController"
+        ],
+        "responses": {
+          "204": {
+            "description": "XBveEmpleados PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/XBveEmpleados"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "XBveEmpleadosController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "XBveEmpleadosController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "XBveEmpleadosController"
+        ],
+        "responses": {
+          "204": {
+            "description": "XBveEmpleados PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/XBveEmpleadosPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "XBveEmpleadosController.updateById"
+      },
+      "get": {
+        "x-controller-name": "XBveEmpleadosController",
+        "x-operation-name": "findById",
+        "tags": [
+          "XBveEmpleadosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "XBveEmpleados model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/XBveEmpleadosWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/XBveEmpleados.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "XBveEmpleadosController.findById"
+      },
+      "delete": {
+        "x-controller-name": "XBveEmpleadosController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "XBveEmpleadosController"
+        ],
+        "responses": {
+          "204": {
+            "description": "XBveEmpleados DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "XBveEmpleadosController.deleteById"
+      }
+    },
+    "/x-bve-empleados": {
+      "post": {
+        "x-controller-name": "XBveEmpleadosController",
+        "x-operation-name": "create",
+        "tags": [
+          "XBveEmpleadosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "XBveEmpleados model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/XBveEmpleados"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewXBveEmpleados"
+              }
+            }
+          }
+        },
+        "operationId": "XBveEmpleadosController.create"
+      },
+      "patch": {
+        "x-controller-name": "XBveEmpleadosController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "XBveEmpleadosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "XBveEmpleados PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "XBveEmpleados.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<XBveEmpleados>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/XBveEmpleadosPartial"
+              }
+            }
+          }
+        },
+        "operationId": "XBveEmpleadosController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "XBveEmpleadosController",
+        "x-operation-name": "find",
+        "tags": [
+          "XBveEmpleadosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of XBveEmpleados model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/XBveEmpleadosWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/XBveEmpleados.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "XBveEmpleadosController.find"
+      }
+    },
+    "/x-bve-formularios/count": {
+      "get": {
+        "x-controller-name": "XBveFormulariosController",
+        "x-operation-name": "count",
+        "tags": [
+          "XBveFormulariosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "XBveFormularios model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "XBveFormularios.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<XBveFormularios>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "XBveFormulariosController.count"
+      }
+    },
+    "/x-bve-formularios/{id}/forms": {
+      "post": {
+        "x-controller-name": "XBveFormulariosFormController",
+        "x-operation-name": "create",
+        "tags": [
+          "XBveFormulariosFormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "XBveFormularios model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Form"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewFormInXBveFormularios"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "XBveFormulariosFormController.create"
+      },
+      "patch": {
+        "x-controller-name": "XBveFormulariosFormController",
+        "x-operation-name": "patch",
+        "tags": [
+          "XBveFormulariosFormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "XBveFormularios.Form PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Form.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Form>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FormPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "XBveFormulariosFormController.patch"
+      },
+      "get": {
+        "x-controller-name": "XBveFormulariosFormController",
+        "x-operation-name": "find",
+        "tags": [
+          "XBveFormulariosFormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of XBveFormularios has many Form",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Form"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "XBveFormulariosFormController.find"
+      },
+      "delete": {
+        "x-controller-name": "XBveFormulariosFormController",
+        "x-operation-name": "delete",
+        "tags": [
+          "XBveFormulariosFormController"
+        ],
+        "responses": {
+          "200": {
+            "description": "XBveFormularios.Form DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Form.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Form>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "XBveFormulariosFormController.delete"
+      }
+    },
+    "/x-bve-formularios/{id}": {
+      "put": {
+        "x-controller-name": "XBveFormulariosController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "XBveFormulariosController"
+        ],
+        "responses": {
+          "204": {
+            "description": "XBveFormularios PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/XBveFormularios"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "XBveFormulariosController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "XBveFormulariosController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "XBveFormulariosController"
+        ],
+        "responses": {
+          "204": {
+            "description": "XBveFormularios PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/XBveFormulariosPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "XBveFormulariosController.updateById"
+      },
+      "get": {
+        "x-controller-name": "XBveFormulariosController",
+        "x-operation-name": "findById",
+        "tags": [
+          "XBveFormulariosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "XBveFormularios model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/XBveFormulariosWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/XBveFormularios.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "XBveFormulariosController.findById"
+      },
+      "delete": {
+        "x-controller-name": "XBveFormulariosController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "XBveFormulariosController"
+        ],
+        "responses": {
+          "204": {
+            "description": "XBveFormularios DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "XBveFormulariosController.deleteById"
+      }
+    },
+    "/x-bve-formularios": {
+      "post": {
+        "x-controller-name": "XBveFormulariosController",
+        "x-operation-name": "create",
+        "tags": [
+          "XBveFormulariosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "XBveFormularios model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/XBveFormularios"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewXBveFormularios"
+              }
+            }
+          }
+        },
+        "operationId": "XBveFormulariosController.create"
+      },
+      "patch": {
+        "x-controller-name": "XBveFormulariosController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "XBveFormulariosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "XBveFormularios PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "XBveFormularios.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<XBveFormularios>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/XBveFormulariosPartial"
+              }
+            }
+          }
+        },
+        "operationId": "XBveFormulariosController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "XBveFormulariosController",
+        "x-operation-name": "find",
+        "tags": [
+          "XBveFormulariosController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of XBveFormularios model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/XBveFormulariosWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/XBveFormularios.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "XBveFormulariosController.find"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Counter": {
+        "title": "Counter",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "sequence"
+        ],
+        "additionalProperties": false
+      },
+      "NewCounter": {
+        "title": "NewCounter",
+        "type": "object",
+        "description": "(tsType: Counter, schemaOptions: { title: 'NewCounter' })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "sequence"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Counter"
+      },
+      "CounterWithRelations": {
+        "title": "CounterWithRelations",
+        "type": "object",
+        "description": "(tsType: CounterWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "sequence"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "CounterWithRelations"
+      },
+      "CounterPartial": {
+        "title": "CounterPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Counter>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Counter>"
+      },
+      "CustomData": {
+        "title": "CustomData",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "key",
+          "values"
+        ],
+        "additionalProperties": false
+      },
+      "NewCustomData": {
+        "title": "NewCustomData",
+        "type": "object",
+        "description": "(tsType: Omit<CustomData, 'id'>, schemaOptions: { title: 'NewCustomData', exclude: [ 'id' ] })",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "key",
+          "values"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<CustomData, 'id'>"
+      },
+      "CustomDataWithRelations": {
+        "title": "CustomDataWithRelations",
+        "type": "object",
+        "description": "(tsType: CustomDataWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "key",
+          "values"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "CustomDataWithRelations"
+      },
+      "CustomDataPartial": {
+        "title": "CustomDataPartial",
+        "type": "object",
+        "description": "(tsType: Partial<CustomData>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<CustomData>"
+      },
+      "FormInput": {
+        "title": "FormInput",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "checkpointId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "selects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "value": {
+            "type": "string"
+          },
+          "example": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "checkpointId",
+          "name",
+          "description"
+        ],
+        "additionalProperties": true
+      },
+      "S3File": {
+        "title": "S3File",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string"
+          },
+          "mime": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "bucket": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "fileName",
+          "file",
+          "mime",
+          "size",
+          "bucket",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "FormBlock": {
+        "title": "FormBlock",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "blockNumber": {
+            "type": "number"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "user": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormInput"
+            }
+          },
+          "imagenes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/S3File"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "Form": {
+        "title": "Form",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          },
+          "personInCharge": {
+            "type": "string"
+          },
+          "customer": {
+            "type": "string"
+          },
+          "salesOrder": {
+            "type": "string"
+          },
+          "item": {
+            "type": "string"
+          },
+          "serialNumber": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormBlock"
+            }
+          },
+          "xBveFormulariosId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "section",
+          "type",
+          "project",
+          "personInCharge",
+          "customer",
+          "item",
+          "serialNumber",
+          "startDate"
+        ],
+        "additionalProperties": false
+      },
+      "FormInputExcluding_id_": {
+        "title": "FormInputExcluding_id_",
+        "type": "object",
+        "description": "(tsType: Omit<FormInput, 'id'>, schemaOptions: { exclude: [ 'id' ] })",
+        "properties": {
+          "checkpointId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "selects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "value": {
+            "type": "string"
+          },
+          "example": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "checkpointId",
+          "name",
+          "description"
+        ],
+        "additionalProperties": true,
+        "x-typescript-type": "Omit<FormInput, 'id'>"
+      },
+      "S3FileExcluding_id_": {
+        "title": "S3FileExcluding_id_",
+        "type": "object",
+        "description": "(tsType: Omit<S3File, 'id'>, schemaOptions: { exclude: [ 'id' ] })",
+        "properties": {
+          "fileName": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string"
+          },
+          "mime": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "bucket": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "fileName",
+          "file",
+          "mime",
+          "size",
+          "bucket",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<S3File, 'id'>"
+      },
+      "FormBlockExcluding_id_": {
+        "title": "FormBlockExcluding_id_",
+        "type": "object",
+        "description": "(tsType: Omit<FormBlock, 'id'>, schemaOptions: { exclude: [ 'id' ] })",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "blockNumber": {
+            "type": "number"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "user": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormInputExcluding_id_"
+            }
+          },
+          "imagenes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/S3FileExcluding_id_"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<FormBlock, 'id'>"
+      },
+      "NewForm": {
+        "title": "NewForm",
+        "type": "object",
+        "description": "(tsType: Omit<Form, 'id'>, schemaOptions: { title: 'NewForm', exclude: [ 'id' ] })",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          },
+          "personInCharge": {
+            "type": "string"
+          },
+          "customer": {
+            "type": "string"
+          },
+          "salesOrder": {
+            "type": "string"
+          },
+          "item": {
+            "type": "string"
+          },
+          "serialNumber": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormBlockExcluding_id_"
+            }
+          },
+          "xBveFormulariosId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "section",
+          "type",
+          "project",
+          "personInCharge",
+          "customer",
+          "item",
+          "serialNumber",
+          "startDate"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Form, 'id'>"
+      },
+      "FormInputWithRelations": {
+        "title": "FormInputWithRelations",
+        "type": "object",
+        "description": "(tsType: FormInputWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "checkpointId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "selects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "value": {
+            "type": "string"
+          },
+          "example": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "checkpointId",
+          "name",
+          "description"
+        ],
+        "additionalProperties": true,
+        "x-typescript-type": "FormInputWithRelations"
+      },
+      "S3FileWithRelations": {
+        "title": "S3FileWithRelations",
+        "type": "object",
+        "description": "(tsType: S3FileWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string"
+          },
+          "mime": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "bucket": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "fileName",
+          "file",
+          "mime",
+          "size",
+          "bucket",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "S3FileWithRelations"
+      },
+      "FormBlockWithRelations": {
+        "title": "FormBlockWithRelations",
+        "type": "object",
+        "description": "(tsType: FormBlockWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "blockNumber": {
+            "type": "number"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "user": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormInputWithRelations"
+            }
+          },
+          "imagenes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/S3FileWithRelations"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "FormBlockWithRelations"
+      },
+      "FormWithRelations": {
+        "title": "FormWithRelations",
+        "type": "object",
+        "description": "(tsType: FormWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          },
+          "personInCharge": {
+            "type": "string"
+          },
+          "customer": {
+            "type": "string"
+          },
+          "salesOrder": {
+            "type": "string"
+          },
+          "item": {
+            "type": "string"
+          },
+          "serialNumber": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormBlockWithRelations"
+            }
+          },
+          "xBveFormulariosId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "section",
+          "type",
+          "project",
+          "personInCharge",
+          "customer",
+          "item",
+          "serialNumber",
+          "startDate"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "FormWithRelations"
+      },
+      "FormPartial": {
+        "title": "FormPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Form>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          },
+          "personInCharge": {
+            "type": "string"
+          },
+          "customer": {
+            "type": "string"
+          },
+          "salesOrder": {
+            "type": "string"
+          },
+          "item": {
+            "type": "string"
+          },
+          "serialNumber": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormBlock"
+            }
+          },
+          "xBveFormulariosId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Form>"
+      },
+      "MasterFormInput": {
+        "title": "MasterFormInput",
+        "type": "object",
+        "properties": {
+          "checkpointId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "level": {
+            "type": "string"
+          },
+          "selects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "level"
+        ],
+        "additionalProperties": false
+      },
+      "MasterFormBlock": {
+        "title": "MasterFormBlock",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "blockNumber": {
+            "type": "number"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterFormInput"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "blockNumber"
+        ],
+        "additionalProperties": false
+      },
+      "MasterForm": {
+        "title": "MasterForm",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "formato": {
+            "type": "string"
+          },
+          "edicion": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterFormBlock"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "section",
+          "type"
+        ],
+        "additionalProperties": false
+      },
+      "MasterFormInputExcluding_id_": {
+        "title": "MasterFormInputExcluding_id_",
+        "type": "object",
+        "description": "(tsType: Omit<MasterFormInput, 'id'>, schemaOptions: { exclude: [ 'id' ] })",
+        "properties": {
+          "checkpointId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "level": {
+            "type": "string"
+          },
+          "selects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "level"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<MasterFormInput, 'id'>"
+      },
+      "MasterFormBlockExcluding_id_": {
+        "title": "MasterFormBlockExcluding_id_",
+        "type": "object",
+        "description": "(tsType: Omit<MasterFormBlock, 'id'>, schemaOptions: { exclude: [ 'id' ] })",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "blockNumber": {
+            "type": "number"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterFormInputExcluding_id_"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "blockNumber"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<MasterFormBlock, 'id'>"
+      },
+      "NewMasterForm": {
+        "title": "NewMasterForm",
+        "type": "object",
+        "description": "(tsType: Omit<MasterForm, 'id'>, schemaOptions: { title: 'NewMasterForm', exclude: [ 'id' ] })",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "formato": {
+            "type": "string"
+          },
+          "edicion": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterFormBlockExcluding_id_"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "section",
+          "type"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<MasterForm, 'id'>"
+      },
+      "MasterFormInputWithRelations": {
+        "title": "MasterFormInputWithRelations",
+        "type": "object",
+        "description": "(tsType: MasterFormInputWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "checkpointId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "level": {
+            "type": "string"
+          },
+          "selects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "level"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "MasterFormInputWithRelations"
+      },
+      "MasterFormBlockWithRelations": {
+        "title": "MasterFormBlockWithRelations",
+        "type": "object",
+        "description": "(tsType: MasterFormBlockWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "blockNumber": {
+            "type": "number"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterFormInputWithRelations"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "blockNumber"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "MasterFormBlockWithRelations"
+      },
+      "MasterFormWithRelations": {
+        "title": "MasterFormWithRelations",
+        "type": "object",
+        "description": "(tsType: MasterFormWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "formato": {
+            "type": "string"
+          },
+          "edicion": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterFormBlockWithRelations"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "section",
+          "type"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "MasterFormWithRelations"
+      },
+      "MasterFormPartial": {
+        "title": "MasterFormPartial",
+        "type": "object",
+        "description": "(tsType: Partial<MasterForm>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "formato": {
+            "type": "string"
+          },
+          "edicion": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterFormBlock"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<MasterForm>"
+      },
+      "XBveEmpleados": {
+        "title": "XBveEmpleados",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "x_pin": {
+            "type": "string"
+          },
+          "x_name": {
+            "type": "string"
+          },
+          "x_department_id": {
+            "type": "number"
+          },
+          "x_active": {
+            "type": "boolean"
+          },
+          "x_job_id": {
+            "type": "number"
+          },
+          "x_barcode": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "x_pin",
+          "x_name",
+          "x_barcode"
+        ],
+        "additionalProperties": false
+      },
+      "NewXBveEmpleados": {
+        "title": "NewXBveEmpleados",
+        "type": "object",
+        "description": "(tsType: Omit<XBveEmpleados, 'id'>, schemaOptions: { title: 'NewXBveEmpleados', exclude: [ 'id' ] })",
+        "properties": {
+          "x_pin": {
+            "type": "string"
+          },
+          "x_name": {
+            "type": "string"
+          },
+          "x_department_id": {
+            "type": "number"
+          },
+          "x_active": {
+            "type": "boolean"
+          },
+          "x_job_id": {
+            "type": "number"
+          },
+          "x_barcode": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "x_pin",
+          "x_name",
+          "x_barcode"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<XBveEmpleados, 'id'>"
+      },
+      "XBveEmpleadosWithRelations": {
+        "title": "XBveEmpleadosWithRelations",
+        "type": "object",
+        "description": "(tsType: XBveEmpleadosWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "x_pin": {
+            "type": "string"
+          },
+          "x_name": {
+            "type": "string"
+          },
+          "x_department_id": {
+            "type": "number"
+          },
+          "x_active": {
+            "type": "boolean"
+          },
+          "x_job_id": {
+            "type": "number"
+          },
+          "x_barcode": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "x_pin",
+          "x_name",
+          "x_barcode"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "XBveEmpleadosWithRelations"
+      },
+      "XBveEmpleadosPartial": {
+        "title": "XBveEmpleadosPartial",
+        "type": "object",
+        "description": "(tsType: Partial<XBveEmpleados>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "x_pin": {
+            "type": "string"
+          },
+          "x_name": {
+            "type": "string"
+          },
+          "x_department_id": {
+            "type": "number"
+          },
+          "x_active": {
+            "type": "boolean"
+          },
+          "x_job_id": {
+            "type": "number"
+          },
+          "x_barcode": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<XBveEmpleados>"
+      },
+      "FormInputOptional_xBveFormulariosId_Excluding_id_": {
+        "title": "FormInputOptional_xBveFormulariosId_Excluding_id_",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<FormInput, 'id'>, 'xBveFormulariosId'>, schemaOptions: { exclude: [ 'id' ], optional: [ 'xBveFormulariosId' ] })",
+        "properties": {
+          "checkpointId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "selects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "value": {
+            "type": "string"
+          },
+          "example": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "checkpointId",
+          "name",
+          "description"
+        ],
+        "additionalProperties": true,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<FormInput, 'id'>, 'xBveFormulariosId'>"
+      },
+      "S3FileOptional_xBveFormulariosId_Excluding_id_": {
+        "title": "S3FileOptional_xBveFormulariosId_Excluding_id_",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<S3File, 'id'>, 'xBveFormulariosId'>, schemaOptions: { exclude: [ 'id' ], optional: [ 'xBveFormulariosId' ] })",
+        "properties": {
+          "fileName": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string"
+          },
+          "mime": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "bucket": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "fileName",
+          "file",
+          "mime",
+          "size",
+          "bucket",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<S3File, 'id'>, 'xBveFormulariosId'>"
+      },
+      "FormBlockOptional_xBveFormulariosId_Excluding_id_": {
+        "title": "FormBlockOptional_xBveFormulariosId_Excluding_id_",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<FormBlock, 'id'>, 'xBveFormulariosId'>, schemaOptions: { exclude: [ 'id' ], optional: [ 'xBveFormulariosId' ] })",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "blockNumber": {
+            "type": "number"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "user": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormInputOptional_xBveFormulariosId_Excluding_id_"
+            }
+          },
+          "imagenes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/S3FileOptional_xBveFormulariosId_Excluding_id_"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<FormBlock, 'id'>, 'xBveFormulariosId'>"
+      },
+      "NewFormInXBveFormularios": {
+        "title": "NewFormInXBveFormularios",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<Form, 'id'>, 'xBveFormulariosId'>, schemaOptions: { title: 'NewFormInXBveFormularios', exclude: [ 'id' ], optional: [ 'xBveFormulariosId' ] })",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          },
+          "personInCharge": {
+            "type": "string"
+          },
+          "customer": {
+            "type": "string"
+          },
+          "salesOrder": {
+            "type": "string"
+          },
+          "item": {
+            "type": "string"
+          },
+          "serialNumber": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormBlockOptional_xBveFormulariosId_Excluding_id_"
+            }
+          },
+          "xBveFormulariosId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "section",
+          "type",
+          "project",
+          "personInCharge",
+          "customer",
+          "item",
+          "serialNumber",
+          "startDate"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<Form, 'id'>, 'xBveFormulariosId'>"
+      },
+      "XBveFormularios": {
+        "title": "XBveFormularios",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "x_name_4": {
+            "type": "string"
+          },
+          "x_origin": {
+            "type": "string"
+          },
+          "x_product_id": {
+            "type": "number"
+          },
+          "x_date_planned_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "x_product_qty": {
+            "type": "number"
+          },
+          "x_state": {
+            "type": "string"
+          },
+          "x_date_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "x_procurement_group_id": {
+            "type": "number"
+          },
+          "x_sale_id": {
+            "type": "number"
+          },
+          "x_product_id_0": {
+            "type": "number"
+          },
+          "x_product_tmpl_id": {
+            "type": "number"
+          },
+          "x_sale_id_0": {
+            "type": "number"
+          },
+          "x_team_id": {
+            "type": "number"
+          },
+          "x_partner_id": {
+            "type": "number"
+          },
+          "x_client_order_ref": {
+            "type": "string"
+          },
+          "x_name_1": {
+            "type": "string"
+          },
+          "x_client_ref": {
+            "type": "string"
+          },
+          "x_user_id": {
+            "type": "number"
+          },
+          "x_analytic_account_id": {
+            "type": "number"
+          },
+          "x_analytic_account_id_0": {
+            "type": "number"
+          },
+          "x_code": {
+            "type": "string"
+          },
+          "x_brand_code": {
+            "type": "string"
+          },
+          "x_partner_id_0": {
+            "type": "number"
+          },
+          "x_name_0": {
+            "type": "string"
+          },
+          "x_user_id_0": {
+            "type": "number"
+          },
+          "x_login": {
+            "type": "string"
+          },
+          "x_product_tmpl_id_0": {
+            "type": "number"
+          },
+          "x_brand_id": {
+            "type": "number"
+          },
+          "x_name": {
+            "type": "string"
+          },
+          "x_categ_id": {
+            "type": "number"
+          },
+          "x_partner_id_1": {
+            "type": "number"
+          },
+          "x_name_2": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewXBveFormularios": {
+        "title": "NewXBveFormularios",
+        "type": "object",
+        "description": "(tsType: Omit<XBveFormularios, 'id'>, schemaOptions: { title: 'NewXBveFormularios', exclude: [ 'id' ] })",
+        "properties": {
+          "x_name_4": {
+            "type": "string"
+          },
+          "x_origin": {
+            "type": "string"
+          },
+          "x_product_id": {
+            "type": "number"
+          },
+          "x_date_planned_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "x_product_qty": {
+            "type": "number"
+          },
+          "x_state": {
+            "type": "string"
+          },
+          "x_date_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "x_procurement_group_id": {
+            "type": "number"
+          },
+          "x_sale_id": {
+            "type": "number"
+          },
+          "x_product_id_0": {
+            "type": "number"
+          },
+          "x_product_tmpl_id": {
+            "type": "number"
+          },
+          "x_sale_id_0": {
+            "type": "number"
+          },
+          "x_team_id": {
+            "type": "number"
+          },
+          "x_partner_id": {
+            "type": "number"
+          },
+          "x_client_order_ref": {
+            "type": "string"
+          },
+          "x_name_1": {
+            "type": "string"
+          },
+          "x_client_ref": {
+            "type": "string"
+          },
+          "x_user_id": {
+            "type": "number"
+          },
+          "x_analytic_account_id": {
+            "type": "number"
+          },
+          "x_analytic_account_id_0": {
+            "type": "number"
+          },
+          "x_code": {
+            "type": "string"
+          },
+          "x_brand_code": {
+            "type": "string"
+          },
+          "x_partner_id_0": {
+            "type": "number"
+          },
+          "x_name_0": {
+            "type": "string"
+          },
+          "x_user_id_0": {
+            "type": "number"
+          },
+          "x_login": {
+            "type": "string"
+          },
+          "x_product_tmpl_id_0": {
+            "type": "number"
+          },
+          "x_brand_id": {
+            "type": "number"
+          },
+          "x_name": {
+            "type": "string"
+          },
+          "x_categ_id": {
+            "type": "number"
+          },
+          "x_partner_id_1": {
+            "type": "number"
+          },
+          "x_name_2": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<XBveFormularios, 'id'>"
+      },
+      "XBveFormulariosWithRelations": {
+        "title": "XBveFormulariosWithRelations",
+        "type": "object",
+        "description": "(tsType: XBveFormulariosWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "x_name_4": {
+            "type": "string"
+          },
+          "x_origin": {
+            "type": "string"
+          },
+          "x_product_id": {
+            "type": "number"
+          },
+          "x_date_planned_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "x_product_qty": {
+            "type": "number"
+          },
+          "x_state": {
+            "type": "string"
+          },
+          "x_date_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "x_procurement_group_id": {
+            "type": "number"
+          },
+          "x_sale_id": {
+            "type": "number"
+          },
+          "x_product_id_0": {
+            "type": "number"
+          },
+          "x_product_tmpl_id": {
+            "type": "number"
+          },
+          "x_sale_id_0": {
+            "type": "number"
+          },
+          "x_team_id": {
+            "type": "number"
+          },
+          "x_partner_id": {
+            "type": "number"
+          },
+          "x_client_order_ref": {
+            "type": "string"
+          },
+          "x_name_1": {
+            "type": "string"
+          },
+          "x_client_ref": {
+            "type": "string"
+          },
+          "x_user_id": {
+            "type": "number"
+          },
+          "x_analytic_account_id": {
+            "type": "number"
+          },
+          "x_analytic_account_id_0": {
+            "type": "number"
+          },
+          "x_code": {
+            "type": "string"
+          },
+          "x_brand_code": {
+            "type": "string"
+          },
+          "x_partner_id_0": {
+            "type": "number"
+          },
+          "x_name_0": {
+            "type": "string"
+          },
+          "x_user_id_0": {
+            "type": "number"
+          },
+          "x_login": {
+            "type": "string"
+          },
+          "x_product_tmpl_id_0": {
+            "type": "number"
+          },
+          "x_brand_id": {
+            "type": "number"
+          },
+          "x_name": {
+            "type": "string"
+          },
+          "x_categ_id": {
+            "type": "number"
+          },
+          "x_partner_id_1": {
+            "type": "number"
+          },
+          "x_name_2": {
+            "type": "string"
+          },
+          "forms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormWithRelations"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "XBveFormulariosWithRelations"
+      },
+      "XBveFormulariosPartial": {
+        "title": "XBveFormulariosPartial",
+        "type": "object",
+        "description": "(tsType: Partial<XBveFormularios>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "x_name_4": {
+            "type": "string"
+          },
+          "x_origin": {
+            "type": "string"
+          },
+          "x_product_id": {
+            "type": "number"
+          },
+          "x_date_planned_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "x_product_qty": {
+            "type": "number"
+          },
+          "x_state": {
+            "type": "string"
+          },
+          "x_date_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "x_procurement_group_id": {
+            "type": "number"
+          },
+          "x_sale_id": {
+            "type": "number"
+          },
+          "x_product_id_0": {
+            "type": "number"
+          },
+          "x_product_tmpl_id": {
+            "type": "number"
+          },
+          "x_sale_id_0": {
+            "type": "number"
+          },
+          "x_team_id": {
+            "type": "number"
+          },
+          "x_partner_id": {
+            "type": "number"
+          },
+          "x_client_order_ref": {
+            "type": "string"
+          },
+          "x_name_1": {
+            "type": "string"
+          },
+          "x_client_ref": {
+            "type": "string"
+          },
+          "x_user_id": {
+            "type": "number"
+          },
+          "x_analytic_account_id": {
+            "type": "number"
+          },
+          "x_analytic_account_id_0": {
+            "type": "number"
+          },
+          "x_code": {
+            "type": "string"
+          },
+          "x_brand_code": {
+            "type": "string"
+          },
+          "x_partner_id_0": {
+            "type": "number"
+          },
+          "x_name_0": {
+            "type": "string"
+          },
+          "x_user_id_0": {
+            "type": "number"
+          },
+          "x_login": {
+            "type": "string"
+          },
+          "x_product_tmpl_id_0": {
+            "type": "number"
+          },
+          "x_brand_id": {
+            "type": "number"
+          },
+          "x_name": {
+            "type": "string"
+          },
+          "x_categ_id": {
+            "type": "number"
+          },
+          "x_partner_id_1": {
+            "type": "number"
+          },
+          "x_name_2": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<XBveFormularios>"
+      },
+      "loopback.Count": {
+        "type": "object",
+        "title": "loopback.Count",
+        "x-typescript-type": "@loopback/repository#Count",
+        "properties": {
+          "count": {
+            "type": "number"
+          }
+        }
+      },
+      "Counter.Fields": {
+        "title": "Counter.Fields",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "boolean"
+          },
+          "sequence": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Counter.Filter": {
+        "type": "object",
+        "title": "Counter.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Counter.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Counter>"
+      },
+      "Counter.Filter1": {
+        "type": "object",
+        "title": "Counter.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Counter.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Counter.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Counter>"
+      },
+      "CustomData.Fields": {
+        "title": "CustomData.Fields",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "boolean"
+          },
+          "key": {
+            "type": "boolean"
+          },
+          "values": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustomData.Filter": {
+        "type": "object",
+        "title": "CustomData.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "$ref": "#/components/schemas/CustomData.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<CustomData>"
+      },
+      "CustomData.Filter1": {
+        "type": "object",
+        "title": "CustomData.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "CustomData.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "$ref": "#/components/schemas/CustomData.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<CustomData>"
+      },
+      "Form.Fields": {
+        "title": "Form.Fields",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "section": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "boolean"
+          },
+          "project": {
+            "type": "boolean"
+          },
+          "personInCharge": {
+            "type": "boolean"
+          },
+          "customer": {
+            "type": "boolean"
+          },
+          "salesOrder": {
+            "type": "boolean"
+          },
+          "item": {
+            "type": "boolean"
+          },
+          "serialNumber": {
+            "type": "boolean"
+          },
+          "startDate": {
+            "type": "boolean"
+          },
+          "endDate": {
+            "type": "boolean"
+          },
+          "blocks": {
+            "type": "boolean"
+          },
+          "xBveFormulariosId": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Form.Filter": {
+        "type": "object",
+        "title": "Form.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Form.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Form>"
+      },
+      "Form.Filter1": {
+        "type": "object",
+        "title": "Form.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Form.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Form.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Form>"
+      },
+      "MasterForm.Fields": {
+        "title": "MasterForm.Fields",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "boolean"
+          },
+          "section": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "boolean"
+          },
+          "formato": {
+            "type": "boolean"
+          },
+          "edicion": {
+            "type": "boolean"
+          },
+          "blocks": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MasterForm.Filter": {
+        "type": "object",
+        "title": "MasterForm.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "$ref": "#/components/schemas/MasterForm.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<MasterForm>"
+      },
+      "MasterForm.Filter1": {
+        "type": "object",
+        "title": "MasterForm.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "MasterForm.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "$ref": "#/components/schemas/MasterForm.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<MasterForm>"
+      },
+      "PingResponse": {
+        "type": "object",
+        "title": "PingResponse",
+        "properties": {
+          "greeting": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "headers": {
+            "type": "object",
+            "properties": {
+              "Content-Type": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "XBveEmpleados.Fields": {
+        "title": "XBveEmpleados.Fields",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "boolean"
+          },
+          "x_pin": {
+            "type": "boolean"
+          },
+          "x_name": {
+            "type": "boolean"
+          },
+          "x_department_id": {
+            "type": "boolean"
+          },
+          "x_active": {
+            "type": "boolean"
+          },
+          "x_job_id": {
+            "type": "boolean"
+          },
+          "x_barcode": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "XBveEmpleados.Filter": {
+        "type": "object",
+        "title": "XBveEmpleados.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "$ref": "#/components/schemas/XBveEmpleados.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<XBveEmpleados>"
+      },
+      "XBveEmpleados.Filter1": {
+        "type": "object",
+        "title": "XBveEmpleados.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "XBveEmpleados.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "$ref": "#/components/schemas/XBveEmpleados.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<XBveEmpleados>"
+      },
+      "XBveFormularios.Fields": {
+        "title": "XBveFormularios.Fields",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "boolean"
+          },
+          "x_name_4": {
+            "type": "boolean"
+          },
+          "x_origin": {
+            "type": "boolean"
+          },
+          "x_product_id": {
+            "type": "boolean"
+          },
+          "x_date_planned_start": {
+            "type": "boolean"
+          },
+          "x_product_qty": {
+            "type": "boolean"
+          },
+          "x_state": {
+            "type": "boolean"
+          },
+          "x_date_start": {
+            "type": "boolean"
+          },
+          "x_procurement_group_id": {
+            "type": "boolean"
+          },
+          "x_sale_id": {
+            "type": "boolean"
+          },
+          "x_product_id_0": {
+            "type": "boolean"
+          },
+          "x_product_tmpl_id": {
+            "type": "boolean"
+          },
+          "x_sale_id_0": {
+            "type": "boolean"
+          },
+          "x_team_id": {
+            "type": "boolean"
+          },
+          "x_partner_id": {
+            "type": "boolean"
+          },
+          "x_client_order_ref": {
+            "type": "boolean"
+          },
+          "x_name_1": {
+            "type": "boolean"
+          },
+          "x_client_ref": {
+            "type": "boolean"
+          },
+          "x_user_id": {
+            "type": "boolean"
+          },
+          "x_analytic_account_id": {
+            "type": "boolean"
+          },
+          "x_analytic_account_id_0": {
+            "type": "boolean"
+          },
+          "x_code": {
+            "type": "boolean"
+          },
+          "x_brand_code": {
+            "type": "boolean"
+          },
+          "x_partner_id_0": {
+            "type": "boolean"
+          },
+          "x_name_0": {
+            "type": "boolean"
+          },
+          "x_user_id_0": {
+            "type": "boolean"
+          },
+          "x_login": {
+            "type": "boolean"
+          },
+          "x_product_tmpl_id_0": {
+            "type": "boolean"
+          },
+          "x_brand_id": {
+            "type": "boolean"
+          },
+          "x_name": {
+            "type": "boolean"
+          },
+          "x_categ_id": {
+            "type": "boolean"
+          },
+          "x_partner_id_1": {
+            "type": "boolean"
+          },
+          "x_name_2": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "XBveFormularios.ScopeFilter": {
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "XBveFormularios.ScopeFilter"
+      },
+      "XBveFormularios.IncludeFilter.Items": {
+        "title": "XBveFormularios.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/XBveFormularios.ScopeFilter"
+          }
+        }
+      },
+      "XBveFormularios.Filter": {
+        "type": "object",
+        "title": "XBveFormularios.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "$ref": "#/components/schemas/XBveFormularios.Fields"
+          },
+          "include": {
+            "title": "XBveFormularios.IncludeFilter",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/XBveFormularios.IncludeFilter.Items"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<XBveFormularios>"
+      },
+      "XBveFormularios.Filter1": {
+        "type": "object",
+        "title": "XBveFormularios.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "XBveFormularios.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "$ref": "#/components/schemas/XBveFormularios.Fields"
+          },
+          "include": {
+            "title": "XBveFormularios.IncludeFilter",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/XBveFormularios.IncludeFilter.Items"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<XBveFormularios>"
+      }
+    },
+    "securitySchemes": {
+      "jwt": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "jwt": []
+    }
+  ]
+}

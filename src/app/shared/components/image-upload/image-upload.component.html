@@ -1,0 +1,4 @@
+<button mat-flat-button (click)="fileInput.click()" color="primary">
+    <span>{{title}}</span>
+</button> 
+<input hidden (change)="handleFileSelect($event)" multiple #fileInput type="file" id="file">

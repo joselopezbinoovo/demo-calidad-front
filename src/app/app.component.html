@@ -1,0 +1,11 @@
+<main class="root">
+    <header>
+        <app-header></app-header>
+    </header>
+    <div class="router">
+        <router-outlet></router-outlet>
+    </div>
+</main>
+<div class="container-spinner" *ngIf="showSpinner">
+    <mat-spinner diameter="150" value="77"></mat-spinner>
+</div>

@@ -1,0 +1,24 @@
+<div class="searcher">
+  <div class="search">
+    <div *ngIf="selects" class="select">
+      <mat-select [(ngModel)]="valueToSearch" (selectionChange)="onSelectChange()">
+        <mat-option *ngFor="let food of selects" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </div>
+
+    <div class="input-search">
+      <div class="input-group">
+        <mat-icon (click)="onClickChange()">search</mat-icon>
+        <input type="tel" placeholder="buscar..." [(ngModel)]="value" (keyup)='keyUp.next($event)'>
+      </div>
+    </div>
+  </div>
+  <div class="filter">
+    <label>Estado: </label>
+    <mat-select [(ngModel)]="selectedState" (selectionChange)="onStateChange($event)">
+      <mat-option [value]="option.viewValue" *ngFor="let option of selectFilter">{{ option.viewValue }}</mat-option>
+    </mat-select>
+  </div>
+</div>

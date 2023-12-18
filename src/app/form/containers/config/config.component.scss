@@ -1,0 +1,24 @@
+main{
+    width: 90%;
+    margin: 1% 5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    header{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+
+    .container2{
+        margin-top: 50px;
+    }
+
+    .btn-container{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}

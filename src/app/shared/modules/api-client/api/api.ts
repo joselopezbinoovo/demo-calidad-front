@@ -1,0 +1,17 @@
+export * from './counterController.service';
+import { CounterControllerService } from './counterController.service';
+export * from './customDataController.service';
+import { CustomDataControllerService } from './customDataController.service';
+export * from './formController.service';
+import { FormControllerService } from './formController.service';
+export * from './masterFormController.service';
+import { MasterFormControllerService } from './masterFormController.service';
+export * from './pingController.service';
+import { PingControllerService } from './pingController.service';
+export * from './xBveEmpleadosController.service';
+import { XBveEmpleadosControllerService } from './xBveEmpleadosController.service';
+export * from './xBveFormulariosController.service';
+import { XBveFormulariosControllerService } from './xBveFormulariosController.service';
+export * from './xBveFormulariosFormController.service';
+import { XBveFormulariosFormControllerService } from './xBveFormulariosFormController.service';
+export const APIS = [CounterControllerService, CustomDataControllerService, FormControllerService, MasterFormControllerService, PingControllerService, XBveEmpleadosControllerService, XBveFormulariosControllerService, XBveFormulariosFormControllerService];

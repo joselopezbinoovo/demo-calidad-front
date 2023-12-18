@@ -1,0 +1,36 @@
+
+main {
+    display: flex;
+    flex-direction: column;
+  
+    header {
+      background-color: #F5F7FE;
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      img {
+        width: 60px;
+      }
+    }
+  
+    h3{
+      margin: 15px 0;
+      font-weight: bold;
+    }
+    .sign {
+      border: 1px solid black
+    }
+  
+    .btn-actions {
+      margin-top: 35px;
+  
+      button {
+        margin: 0 5px;
+      }
+    }
+  }
+  
+  

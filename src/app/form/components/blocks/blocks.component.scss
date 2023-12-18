@@ -1,0 +1,24 @@
+.blocks-header{
+    background-color: #F5F7FE;
+    h3{
+        padding: 20px;
+        text-transform: uppercase;
+        font-weight: 500;
+        display: flex;
+        color: #828282;
+        span{
+            flex-grow: 1;
+        }
+    }
+
+    
+}
+
+footer {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    button {
+      margin: 0 20px;
+    }
+  }

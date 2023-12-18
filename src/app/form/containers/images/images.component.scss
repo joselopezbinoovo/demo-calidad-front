@@ -1,0 +1,58 @@
+main{
+    width: 90%;
+    margin: 1% 5%;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    flex-direction: row;
+}
+section{
+    flex-wrap: wrap;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.subHeader{
+    margin-top: 50px;
+    margin-left: 20px;
+}
+article{
+    margin: 20px;
+    width: 400px;
+}
+.example-card {
+    height: 400px;
+}
+.imageCard{
+    height: 300px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 300px;
+    img{
+        vertical-align: middle
+    }
+}
+.buttonsCard{
+    display: flex;
+    justify-content: space-between;
+    button{
+        margin: 0;
+        color: #5d5ec2;
+    }
+}
+
+mat-card-header{
+    display: flex;
+    justify-content: center;
+}
+
+mat-checkbox.example-margin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+

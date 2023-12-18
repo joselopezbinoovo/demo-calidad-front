@@ -1,0 +1,45 @@
+<main>
+  <header>
+    <button mat-mini-fab color="primary" (click)="goBack()">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <app-image-upload [title]="'Adjuntar imagen'" [serialNumber]="form?.serialNumber" [data]="makeFilePath()" (onUpload)="uploadImage($event)">
+    </app-image-upload>
+    <mat-checkbox class="example-margin" [(ngModel)]="selectAllImages" (change)="toggleSelectAllImages()">Seleccionar todas las imágenes para Eliminar</mat-checkbox>
+    <button mat-flat-button color="warn" (click)="deleteSelectedImages()"  style="background-color: #BF1A4A;">Eliminar Imágenes Seleccionadas</button>
+
+
+  </header>
+  <div class="subHeader">
+    <h2>{{etapa}}</h2>
+    <div *ngIf="!images || images.length === 0">
+      <h3>No existen imagenes</h3>
+    </div>
+  </div>
+  <section>
+    <article *ngFor="let image of images; let i = index">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>{{image.name[0]}}</mat-card-title>
+          <mat-checkbox [(ngModel)]="image.selected"></mat-checkbox>
+        </mat-card-header>
+        <div class="imageCard">
+          <img mat-card-image [src]="image.url" alt="Photo of a Shiba Inu">
+        </div>
+        <mat-card-actions>
+          <div class="buttonsCard">
+            <button mat-stroked-button (click)="zoomImg(image)">
+              <mat-icon>zoom_in</mat-icon> Ver
+            </button>
+            <button mat-stroked-button (click)="downloadImage(image)">
+              <mat-icon>download</mat-icon> Descargar
+            </button>
+            <button mat-stroked-button (click)="deleteImage(image, i)">
+              <mat-icon>delete</mat-icon> Eliminar
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </article>
+  </section>
+</main>

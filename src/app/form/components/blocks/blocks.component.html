@@ -1,0 +1,24 @@
+<div class="blocks-header">
+    <h3><span>Bloque  {{ index }}</span><span>{{ block?.name }}</span></h3>
+</div>
+
+<app-table-generic
+    [tableProperties]="genericTable"
+    (eventTableClick)="eventTableClickHandler($event)"
+    [eventInput]="eventInput"
+    [dataSource]="dataSource"
+ >
+</app-table-generic>
+
+
+<footer>
+    <button *ngIf="form.status != 'Finalizado'" mat-raised-button color="warn"  (click)="cancelForm()" >Cancelar</button>
+
+    <button mat-raised-button color="primary"
+        *ngIf="form.status != 'Finalizado' || hasPermissions()" (click)="handlerSubmit()">Guardar
+        Bloque</button>
+    <button mat-raised-button color="primary"
+        [disabled]="!showFinish()"
+        (click)="finishForm()">Finalizar</button>
+
+</footer>
