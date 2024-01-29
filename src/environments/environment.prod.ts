@@ -7,7 +7,7 @@
 //   s3SecretKey: 'iiew-Jm4kkdsUldspewp-kdff2',
 //   s3AccessKey: 'BSI-QUALITY-FORM',
 // };
-export const environment = {
+/* export const environment = {
   production: true,
   backendUrl: 'http://192.168.192.11:3000',
   loopbackUrl: 'http://192.168.0.17:3090/api/v1',
@@ -15,4 +15,14 @@ export const environment = {
   s3Bucket: 'calidad',
   s3SecretKey: 'iiew-Jm4kkdsUldspewp/kdff2',
   s3AccessKey: 'BSI-QUALITY-FORM',
+}; */
+export const environment = {
+  production: false,
+  backendUrl: 'http://192.168.200.23:3500',
+  loopbackUrl: 'http://192.168.200.23:3500/api/v1',
+  s3EndPoint: 'http://192.168.200.23:9000',
+  s3Bucket: 'calidad',
+  s3SecretKey: 'minioadmin',
+  s3AccessKey: 'minioadmin',
 };
+

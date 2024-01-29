@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.valid) {
       return;
     }
+
+    console.log('====================================');
+    console.log(this.loginForm.value);
+    console.log('====================================');
     this.loginService.loginUser({ ...this.loginForm.value })
   }
 

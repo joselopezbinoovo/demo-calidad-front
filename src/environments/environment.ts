@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'http://localhost:3000',
-  loopbackUrl: 'http://localhost:3000/api/v1',
-  s3EndPoint: 'http://localhost:9000',
+  backendUrl: 'http://localhost:3500',
+  loopbackUrl: 'http://192.168.200.23:3500/api/v1',
+  s3EndPoint: 'http://192.168.200.23:9000',
   s3Bucket: 'calidad',
   s3SecretKey: 'minioadmin',
   s3AccessKey: 'minioadmin',

@@ -1,16 +1,24 @@
 # FROM node:lts AS builder
 FROM node:10-slim AS builder
 
+
 WORKDIR /app
+COPY package*.json ./
+
+
+RUN npm install
+
+
 COPY . .
-RUN npm install && \
-    npm run build:prod
 
 
-FROM nginx
-RUN rm -rf /usr/share/nginx/html/*
+RUN npm run build
 
-COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/dist/bsi-qf-front/ /usr/share/nginx/html
+#CMD ng serve --host 0.0.0.0
 
-CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/js/env.template.js > /usr/share/nginx/html/assets/js/env.js && exec nginx -g 'daemon off;'"]
+
+FROM nginx:stable
+
+COPY ./config/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/dist/demo-calidad-front/ /usr/share/nginx/html
+EXPOSE 80
