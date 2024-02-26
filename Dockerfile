@@ -20,5 +20,7 @@ RUN npm run build
 FROM nginx:stable
 
 COPY ./config/default.conf /etc/nginx/conf.d/default.conf
+COPY ./config/.htpasswd /etc/nginx/.htpasswd
 COPY --from=builder /app/dist/demo-calidad-front/ /usr/share/nginx/html
+
 EXPOSE 80

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HeaderService, IHeaderParam } from '../../services/header.service';
 import { LoginService } from 'src/app/shared/services/login.service';
 import { XBveEmpleadosFields } from 'src/app/shared/modules/api-client/model/xBveEmpleadosFields';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
   public params$: Observable<IHeaderParam[]>;
   public user: XBveEmpleadosFields;
 
-  constructor( private headerService: HeaderService, private loginService: LoginService) {
+  constructor( private headerService: HeaderService, private loginService: LoginService, private router:Router) {
     this.params$ = this.headerService.getParams();
     this.user = {};
    }
@@ -26,6 +27,10 @@ export class HeaderComponent implements OnInit {
 
   logOut(){
     this.loginService.logoutUser();
+  }
+
+  navigateToHome(){
+    this.router.navigateByUrl('/home');
   }
 
 
